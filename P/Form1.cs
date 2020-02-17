@@ -25,15 +25,15 @@ namespace P
         {
             InitializeComponent();
             FiltrarListaPersona();
-            IsertarTabla();
+            InsertarTabla();
         }
 
-        void IsertarTabla()
+        void InsertarTabla()
         {
             DataTable dt = new DataTable();
 
 
-            if ((dt = proces.ClientesTabla()) != null)
+            if ((dt = proces.CitasTabla()) != null)
             {
                 TablaCliente.DataSource = dt;
             }
@@ -80,10 +80,11 @@ namespace P
                 int idcita = random.Next(1, 999);
                 DateTime date = DateTime.Now;
                 string fecha = "";
-                fecha = Convert.ToString(date.Day) + "/" + Convert.ToString(date.Month) + "/" + Convert.ToString(date.Year);
-                Citas cita = new Citas(idcita, jc_doctor.SelectedText, Jc_Paciente.SelectedText, "Falta", fecha);
+                fecha = Jc_hora.Items[Jc_hora.SelectedIndex].ToString()+"-"+  Convert.ToString(date.Day) + "/" + Convert.ToString(date.Month) + "/" + Convert.ToString(date.Year);
+                Citas cita = new Citas(idcita, jc_doctor.Items[jc_doctor.SelectedIndex].ToString(), Jc_Paciente.Items[Jc_Paciente.SelectedIndex].ToString(), jt_desc.Text, fecha);
 
                 proces.AgregarCita(cita);
+                InsertarTabla(); 
             }
             catch (Exception ex)
             {
@@ -94,6 +95,26 @@ namespace P
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int row = e.RowIndex;
+
+            jt_cod.Text = TablaCliente.Rows[row].Cells[0].Value.ToString();
+          
+
+        }
+
+        private void EliminaCita_Click(object sender, EventArgs e)
+        {
+            cita.IdCita = int.Parse(jt_cod.Text);
+            proces.EliminarCita(cita);
+            InsertarTabla();
+        }
+
+        private void Hora_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'hospitalDataSet.Citas' Puede moverla o quitarla según sea necesario.
+            this.citasTableAdapter.Fill(this.hospitalDataSet.Citas);
+            // TODO: esta línea de código carga datos en la tabla 'hospitalDataSet.Paciente' Puede moverla o quitarla según sea necesario.
+            this.pacienteTableAdapter.Fill(this.hospitalDataSet.Paciente);
 
         }
     }

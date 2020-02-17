@@ -15,7 +15,7 @@ namespace AccesoDatos1
     {
         List<object> listaPersona = new List<object>();
         List<Citas> listCita = new List<Citas>();
-        ConnexionBd acd = new ConnexionBd();
+        ConnexionBD acd = new ConnexionBD();
         public void AgregarPersona(object agrega) => listaPersona.Add(agrega);
         public List<object> ReturListaPersona() => listaPersona;
 
@@ -25,7 +25,11 @@ namespace AccesoDatos1
             listCita.Add(cita);
         }
 
-        public void EliminarCita(Citas cita) => listCita.Remove(cita);
+        public void EliminarCita(Citas cita)
+        {
+            acd.Eliminar(cita);
+            listCita.Remove(cita);
+        }
 
         public void Connection(Citas cita)
         {
@@ -33,12 +37,15 @@ namespace AccesoDatos1
             acd.AgregarCita(cita);
         }
 
-        public DataTable ClientesTabla()
+        public DataTable CitasTabla()
         {
-            ConnexionBd conexion = new ConnexionBd();
+            ConnexionBD conexion = new ConnexionBD();
 
-            return conexion.MostrarClintes();
+            return conexion.MostrarCitas();
         }
+
+
+
     }
 }
 

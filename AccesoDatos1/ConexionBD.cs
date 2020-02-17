@@ -14,18 +14,17 @@ namespace AccesoDatos1
         public SqlConnection Conexion()
         {
             SqlConnection cn;
-            SqlCommand cmd;
-            SqlDataReader dr;
+            //SqlCommand cmd;
+            // SqlDataReader dr;
             try
             {
-                cn = new SqlConnection("Data Source=B-PC;Initial Catalog=Hospital;Persist Security Info=True;User ID=Progra_II;Password=***********");
+                cn = new SqlConnection("Data Source=B-PC;Initial Catalog=Hospital;Persist Security Info=True;User ID=Progra_II;Password=123456");
                 cn.Open();
-                MessageBox.Show("Conectado");
                 return cn;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error: " + ex);
+                MessageBox.Show("Error al conectar a la base de Datos: " + ex);
                 return null;
             }
 

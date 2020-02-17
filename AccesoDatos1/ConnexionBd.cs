@@ -10,15 +10,13 @@ using System.Data;
 
 namespace AccesoDatos1
 {
-    public class ConnexionBd
+    public class ConnexionBD
     {
         ConexionBD con = new ConexionBD();
 
         public void AgregarCita(Citas cita)
         {
-
-
-            SqlCommand comand = new SqlCommand("sp_agregarCita", con.Conexion())
+            SqlCommand comand = new SqlCommand("agregar", con.Conexion())
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -30,14 +28,31 @@ namespace AccesoDatos1
 
             comand.ExecuteNonQuery();
         }
+        public void Eliminar(Citas cita)
+        {
+            try
+            {
 
-        public DataTable MostrarClintes()
+                SqlCommand command = new SqlCommand("eliminar", con.Conexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@idCita", SqlDbType.Int).Value = cita.IdCita;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex);
+            }
+        }
+
+        public DataTable MostrarCitas()
         {
             try
             {
                 DataTable data = new DataTable();
 
-                SqlCommand command = new SqlCommand("select * from Clinte", con.Conexion());
+                SqlCommand command = new SqlCommand("select * from Citas", con.Conexion());
                 SqlDataAdapter sqlData = new SqlDataAdapter(command);
 
                 sqlData.Fill(data);
