@@ -72,7 +72,6 @@
             // 
             this.jc_doctor.FormattingEnabled = true;
             this.jc_doctor.Items.AddRange(new object[] {
-            "Seleccione",
             "Carlos Arguedas",
             "María Zúñiga",
             "Nela Marín"});
@@ -80,6 +79,8 @@
             this.jc_doctor.Name = "jc_doctor";
             this.jc_doctor.Size = new System.Drawing.Size(121, 21);
             this.jc_doctor.TabIndex = 3;
+            this.jc_doctor.Text = "Seleccione";
+            this.jc_doctor.SelectedIndexChanged += new System.EventHandler(this.jc_doctor_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -94,7 +95,6 @@
             // 
             this.Jc_Paciente.FormattingEnabled = true;
             this.Jc_Paciente.Items.AddRange(new object[] {
-            "Seleccione",
             "Minor Cardenas",
             "Daniel Bonilla",
             "Leonardo León",
@@ -109,6 +109,7 @@
             this.Jc_Paciente.Name = "Jc_Paciente";
             this.Jc_Paciente.Size = new System.Drawing.Size(121, 21);
             this.Jc_Paciente.TabIndex = 5;
+            this.Jc_Paciente.Text = "Seleccione";
             // 
             // label2
             // 
@@ -123,19 +124,17 @@
             // 
             this.Jc_hora.FormattingEnabled = true;
             this.Jc_hora.Items.AddRange(new object[] {
-            "Seleccione",
-            "8:00 a.m",
-            "9:00 a.m",
-            "10:00 a.m",
-            "11:00 a.m",
+            "08:00a.m",
+            "09:00a.m",
+            "10:00a.m",
+            "11:00a.m",
             "12:00a.m",
-            "",
-            "",
             ""});
             this.Jc_hora.Location = new System.Drawing.Point(554, 211);
             this.Jc_hora.Name = "Jc_hora";
             this.Jc_hora.Size = new System.Drawing.Size(121, 21);
             this.Jc_hora.TabIndex = 7;
+            this.Jc_hora.Text = "Seleccione";
             // 
             // label3
             // 
